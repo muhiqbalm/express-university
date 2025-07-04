@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Student.hasOne(models.StudentDetail, { foreignKey: "id_student" });
 
+      Student.belongsTo(models.User, { foreignKey: "id" });
+
       Student.belongsToMany(models.Subject, {
         through: models.StudyPlan,
         foreignKey: "id_student",
@@ -36,6 +38,14 @@ module.exports = (sequelize, DataTypes) => {
             args: [["female", "male"]],
             msg: "Gender must be female or male.",
           },
+        },
+      },
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        unique: {
+          args: true,
+          msg: "ID user already used.",
         },
       },
     },

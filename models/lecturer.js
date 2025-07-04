@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Lecturer.hasMany(models.Subject, { foreignKey: "id_lecturer" });
+      Lecturer.belongsTo(models.User, { foreignKey: "id" });
     }
   }
   Lecturer.init(
@@ -30,6 +31,14 @@ module.exports = (sequelize, DataTypes) => {
             args: [["female", "male"]],
             msg: "Gender must be female or male",
           },
+        },
+      },
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        unique: {
+          args: true,
+          msg: "ID user already used.",
         },
       },
     },

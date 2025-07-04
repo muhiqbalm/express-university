@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasOne(models.Student, { foreignKey: "id" });
+      User.hasOne(models.Lecturer, { foreignKey: "id" });
     }
   }
   User.init(
@@ -21,7 +23,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       password: DataTypes.STRING,
-      role: DataTypes.STRING,
+      role: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: {
+            args: [["admin", "student", "lecturer"]],
+            msg: "Role must be admin, student, or lecturer.",
+          },
+        },
+      },
     },
     {
       sequelize,

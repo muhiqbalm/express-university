@@ -32,13 +32,13 @@ class StudentsControllers {
 
   static createStudent = async (req, res, next) => {
     try {
-      const { first_name, last_name, email, gender } = req.body;
+      const { first_name, last_name, email, gender, id } = req.body;
 
-      if (!first_name || !last_name || !email || !gender) {
+      if (!first_name || !last_name || !email || !gender || !id) {
         throw {
           status: 400,
           message:
-            "All fields are required: first_name, last_name, email, gender.",
+            "All fields are required: first_name, last_name, email, gender,  id.",
         };
       }
 
@@ -47,6 +47,7 @@ class StudentsControllers {
         last_name,
         email,
         gender,
+        id,
       });
 
       res

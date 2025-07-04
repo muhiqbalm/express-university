@@ -2,7 +2,7 @@ const morgan = require("morgan");
 const route = require("./routes");
 const express = require("express");
 const dotenv = require("dotenv").config();
-const swaggerSpec = require("./docs/swagger");
+const swaggerSpec = require("./swagger");
 const swaggerUi = require("swagger-ui-express");
 const { errorHandler } = require("./middlewares");
 
