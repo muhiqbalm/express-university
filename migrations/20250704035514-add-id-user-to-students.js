@@ -19,11 +19,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.changeColumn("Students", "id", {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER,
-    });
+    await queryInterface.removeConstraint("Students", "Students_id_fkey");
   },
 };
